@@ -1,0 +1,30 @@
+{
+  "name": "nametobiz",
+  "version": "1.0.0",
+  "description": "AI-Driven Domain-to-Prototype Platform",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "keywords": [
+    "ai",
+    "domain",
+    "prototype",
+    "startup"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.1",
+  "dependencies": {
+    "eslint": "9.29.0",
+    "prettier": "3.6.0",
+    "turbo": "2.5.4",
+    "typescript": "5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20"
+  }
+}
