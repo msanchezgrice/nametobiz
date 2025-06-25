@@ -109,4 +109,8 @@ pass = ""
 admin_email = ""
 sender_name = ""
 
-# Edge functions configuration removed - not needed for basic deployment 
+[edge_functions]
+enabled = true
+# Configure one of the supported request policies: `oneshot`, `per_worker`.
+# Use `oneshot` for hot-reloading, or `per_worker` for load testing.
+inspector_port = 8083 

@@ -12,6 +12,10 @@ export interface ThemeSpec {
     fonts: string;
     tone: string;
     layout: string;
+    hero_visual: string;
+    social_proof: string[];
+    faq_entries: Array<{ q: string; a: string }>;
+    primary_cta: string;
   };
 }
 
@@ -38,7 +42,7 @@ export class BuilderAgent {
     try {
       const response = await this.client.messages.create({
         model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 8000,
+        max_tokens: 12000,
         temperature: 0.7,
         messages: [
           {
@@ -84,7 +88,7 @@ export class BuilderAgent {
   }
 
   private buildPrompt(spec: ThemeSpec): string {
-    return `You are SiteBuilder v1. Convert structured specifications into fully working static websites ready for instant preview. Output a single JSON bundle exactly matching the schema. Never include commentary, Markdown, or extra keys.
+    return `You are SiteBuilder v2 (MVP2.md). Convert structured specifications into conversion-optimized landing pages that prioritize visual polish and user engagement over byte budget. Output a single JSON bundle exactly matching the schema.
 
 ## ThemeSpec Input:
 ${JSON.stringify(spec, null, 2)}
@@ -104,55 +108,40 @@ Return JSON:
   }
 }
 
-### Hard requirements
-1. Use theme colors, fonts, tone exactly as specified
-2. Complete copy – persuasive marketing text that matches the value proposition
-3. Interactive feel – working nav, form validation → /onboarding.html, carousel, dashboard toast
-4. Enhanced PWA with advanced sw.js:
-   - Precache all static assets (cache-first strategy)
-   - Network-first for API calls
-   - Offline fallback pages
-   - Background sync for forms
-   - Web App Manifest compatibility
-   - Total bundle size <200 KB
-5. No external assets – embed SVGs, gradients, fonts inline
-6. Accessibility semantics + ARIA labels (score >90)
-7. Exactly the listed file keys above
-8. Mobile-responsive design (viewport meta, touch-friendly)
-9. Professional, modern UI that matches the specified theme
-10. Working JavaScript functionality (form validation, navigation, interactive elements)
-11. Performance optimized (Lighthouse score >90):
-    - Minified CSS/JS
-    - Optimized images as inline SVGs
-    - Preload critical resources
-    - Async/defer non-critical scripts
+### MVP2.md CONVERSION-FIRST REQUIREMENTS
 
-### PWA Requirements
-Generate complete PWA compliance:
+1. **Conversion-first design priority:**
+   - Render USP headline, hero section, benefits grid, testimonial block, FAQ accordion, single CTA
+   - Use theme.hero_visual for hero background via Unsplash: \`https://source.unsplash.com/1600x900?{keyword}\`
+   - Hero section must cover ≥ 60% viewport height @ 1440px
+   - USP headline ≤ 12 words, emotionally compelling
+   - CTA buttons must use exact theme.primary_cta text
 
-**Web App Manifest (manifest.json):**
-- Name, short_name, description matching the startup concept
-- Theme color and background color from theme
-- Display: "standalone" for app-like experience
-- Start URL: "/"  
-- Icons array with multiple sizes including 512x512 maskable icon
-- Proper orientation and scope settings
+2. **Enhanced visual design:**
+   - You may import ONE Google Font with \`font-display: swap\` via preconnect
+   - Rich color palette using all theme.colors with gradients and depth
+   - Sophisticated typography hierarchy (5+ font sizes)
+   - Professional spacing system (8px, 16px, 24px, 32px, 48px, 64px)
+   - Modern CSS: Grid layouts, Flexbox, smooth transitions, hover effects
 
-**Enhanced Service Worker (sw.js):**
-- Cache versioning with theme name
-- Install event with precaching all resources
-- Fetch event with cache-first strategy + network fallback
-- Offline fallback to index.html for navigation requests
-- skipWaiting() and clients.claim() for immediate activation
-- Background sync for form submissions
+3. **Content integration:**
+   - Use theme.social_proof testimonials with avatar SVG circles
+   - Implement theme.faq_entries as interactive accordion
+   - Include 6+ detailed feature descriptions (not just core_features)
+   - Add realistic company details, team info, and trust signals
 
-**HTML Requirements:**
-- Link to manifest.json in all HTML files
-- Theme color meta tags
-- Viewport meta tag with proper scaling
-- No deprecated APIs (avoid document.write, deprecated jQuery methods)
-- Proper error handling to avoid console errors
-- Service worker registration with error handling
+4. **Design > byte-budget:**
+   - Focus on visual appeal over file size constraints
+   - Use rich gradients, shadows, and visual depth
+   - Inline SVG icons with multiple variations
+   - Beautiful micro-interactions and animations
+
+5. **Technical requirements:**
+   - PWA compliant with enhanced manifest.json
+   - Service worker with smart caching strategies
+   - Mobile-responsive with touch-optimized interactions
+   - Accessibility compliance (ARIA labels, semantic HTML)
+   - CLS < 0.1 via font-display: swap
 
 ### CRITICAL: Use Relative Paths Only
 All links and assets MUST use relative paths (no leading slash):
@@ -161,7 +150,17 @@ All links and assets MUST use relative paths (no leading slash):
 - JS: src="assets/app.js" NOT src="/assets/app.js"
 - Service worker registration: navigator.serviceWorker.register("sw.js")
 
-Focus on creating a compelling, interactive prototype that showcases the startup concept effectively using the specified theme colors, fonts, and tone. Ensure maximum performance and PWA compliance.
+### VISUAL QA CHECKLIST
+✅ Hero covers ≥ 60% viewport height with Unsplash background
+✅ USP headline ≤ 12 words, compelling and clear
+✅ CTA buttons use exact theme.primary_cta text
+✅ Testimonials render with names, titles, and avatar circles
+✅ FAQ accordion is functional and well-styled
+✅ Google Font loads with font-display: swap
+✅ Rich visual hierarchy with 5+ font sizes
+✅ Professional spacing and modern design patterns
+
+Focus on creating a conversion-optimized landing page that looks professional enough to command premium pricing. Prioritize visual appeal, user engagement, and authentic content over technical constraints.
 
 Begin.`;
   }
