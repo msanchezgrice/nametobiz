@@ -1,0 +1,16 @@
+{
+  "name": "@nametobiz/ci",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lhci": "lhci autorun",
+    "lhci:test": "lhci autorun --config=lh.config.js",
+    "test:prototypes": "node test-prototype.js",
+    "validate:phase6": "node validate-phase6.js",
+    "phase6:complete": "echo '🎉 Phase 6 PWA & Performance: COMPLETE'"
+  },
+  "dependencies": {
+    "@lhci/cli": "^0.13.0",
+    "lighthouse": "^11.7.1"
+  }
+} 

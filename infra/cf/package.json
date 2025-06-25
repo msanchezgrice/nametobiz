@@ -1,0 +1,16 @@
+{
+  "name": "nametobiz-static-delivery",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker for serving prototype bundles from R2",
+  "main": "worker.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0",
+    "@cloudflare/workers-types": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+} 

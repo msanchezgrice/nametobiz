@@ -1,0 +1,10 @@
+name = "nametobiz-static-delivery"
+main = "worker.ts"
+compatibility_date = "2024-06-24"
+
+[[r2_buckets]]
+binding = "BUNDLES"
+bucket_name = "nametobiz"
+
+[vars]
+ENVIRONMENT = "production" 

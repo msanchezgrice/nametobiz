@@ -1,20 +1,19 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "tasks": {
+  "pipeline": {
     "build": {
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
-    "lint": {
-      "outputs": []
-    },
-    "test": {
-      "outputs": [],
-      "dependsOn": ["build"]
-    },
+    "lint": {},
+    "test": {},
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "lhci": {
+      "dependsOn": ["build"],
+      "outputs": ["lhci_reports/**"]
     }
   }
 } 
