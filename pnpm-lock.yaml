@@ -27,6 +27,15 @@ importers:
 
   apps/web:
     dependencies:
+      '@nametobiz/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@nametobiz/llm':
+        specifier: workspace:*
+        version: link:../../packages/llm
+      '@nametobiz/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@supabase/auth-helpers-nextjs':
         specifier: ^0.10.0
         version: 0.10.0(@supabase/supabase-js@2.50.1(ws@8.18.2))
