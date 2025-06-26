@@ -5,7 +5,7 @@
   "installCommand": "pnpm install",
   "framework": "nextjs",
   "functions": {
-    "apps/web/pages/api/**/*.js": {
+    "apps/web/src/app/api/**/route.js": {
       "maxDuration": 30
     }
   }
