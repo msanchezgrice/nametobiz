@@ -14,16 +14,39 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
+    console.log('🎯 HomePage component mounted', {
+      timestamp: new Date().toISOString(),
+      location: window.location.href,
+      userAgent: navigator.userAgent
+    });
+
     const getUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-      setIsLoading(false);
+      console.log('👤 Getting user from Supabase...');
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser();
+        console.log('👤 User fetch result:', { 
+          hasUser: !!user, 
+          userId: user?.id, 
+          userEmail: user?.email,
+          error: error?.message 
+        });
+        setUser(user);
+      } catch (error) {
+        console.error('❌ Error fetching user:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     getUser();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
+        console.log('🔄 Auth state changed:', { 
+          event, 
+          hasSession: !!session,
+          userId: session?.user?.id 
+        });
         setUser(session?.user ?? null);
       }
     );
@@ -32,6 +55,8 @@ export default function HomePage() {
   }, [supabase.auth]);
 
   const handleDomainsSubmit = async (domains: string[]) => {
+    console.log('📤 Submitting domains:', { domains, timestamp: new Date().toISOString() });
+    
     try {
       const response = await fetch('/api/start-job', {
         method: 'POST',
@@ -41,32 +66,48 @@ export default function HomePage() {
         body: JSON.stringify({ domains }),
       });
 
+      console.log('📥 API response:', { 
+        status: response.status, 
+        statusText: response.statusText,
+        headers: Object.fromEntries(response.headers.entries())
+      });
+
       const data = await response.json();
+      console.log('📄 Response data:', data);
 
       if (!response.ok) {
+        console.error('❌ API request failed:', { status: response.status, data });
         throw new Error(data.error || 'Failed to submit domains');
       }
 
+      console.log('✅ Job created, redirecting to:', `/job/${data.jobId}`);
       // Redirect to job status page
       router.push(`/job/${data.jobId}`);
     } catch (error) {
-      console.error('Error submitting domains:', error);
+      console.error('🔥 Error submitting domains:', error);
       throw error;
     }
   };
 
   const handleAuthenticated = () => {
+    console.log('✅ User authenticated successfully');
     // This will be called when user successfully authenticates
     // The useEffect above will handle updating the user state
   };
 
   if (isLoading) {
+    console.log('⏳ Showing loading state...');
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading NametoBiz...</p>
+        </div>
       </div>
     );
   }
+
+  console.log('🎨 Rendering main UI', { hasUser: !!user, userEmail: user?.email });
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -92,11 +133,29 @@ export default function HomePage() {
               Signed in as {user.email}
             </p>
             <button
-              onClick={() => supabase.auth.signOut()}
+              onClick={() => {
+                console.log('🚪 User signing out...');
+                supabase.auth.signOut();
+              }}
               className="mt-2 text-sm text-blue-600 hover:text-blue-800 underline"
             >
               Sign out
             </button>
+          </div>
+        )}
+        
+        {/* Debug info in development */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="mt-8 p-4 bg-gray-100 rounded-lg text-xs">
+            <h3 className="font-bold mb-2">Debug Info:</h3>
+            <pre>{JSON.stringify({
+              hasUser: !!user,
+              userId: user?.id,
+              userEmail: user?.email,
+              isLoading,
+              location: typeof window !== 'undefined' ? window.location.href : 'SSR',
+              timestamp: new Date().toISOString()
+            }, null, 2)}</pre>
           </div>
         )}
       </div>
