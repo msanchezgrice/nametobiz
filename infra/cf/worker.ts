@@ -25,7 +25,9 @@ export default {
   async fetch(req: Request, env: any): Promise<Response> {
     const url = new URL(req.url);
     if (url.pathname.startsWith("/site/")) {
-      const key = url.pathname.replace("/site/", "");
+      const encodedKey = url.pathname.replace("/site/", "");
+      // Decode the URL-encoded key to handle spaces in theme names
+      const key = decodeURIComponent(encodedKey);
       const obj = await env.BUNDLES.get(key, { cacheTtl: 31536000 });
       if (!obj) return new Response("404", { status: 404 });
       

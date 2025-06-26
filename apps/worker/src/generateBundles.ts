@@ -22,6 +22,10 @@ export interface Analysis {
         fonts: string;
         tone: string;
         layout: string;
+        hero_visual: string;
+        social_proof: string[];
+        faq_entries: Array<{ q: string; a: string }>;
+        primary_cta: string;
       }>;
     }>;
   }>;
@@ -229,8 +233,9 @@ export class BundleGenerator {
         // Create the bundle key for R2 storage
         const bundleKey = `bundles/${bundle.jobId}/${bundle.domain}/${bundle.themeName}`;
         
-        // Create the preview URL for Cloudflare Worker
-        const previewUrl = `https://nametobiz-static-delivery.doodad.workers.dev/site/${bundleKey}/index.html`;
+        // Create the preview URL for Cloudflare Worker with proper URL encoding
+        const encodedThemeName = encodeURIComponent(bundle.themeName);
+        const previewUrl = `https://nametobiz-static-delivery.doodad.workers.dev/site/bundles/${bundle.jobId}/${bundle.domain}/${encodedThemeName}/index.html`;
 
         const insertData = {
           job_id: bundle.jobId,
