@@ -15,8 +15,8 @@ export class AnthropicClient {
       const prompt = this.buildThinkingPrompt(domains);
       
       const message = await this.client.messages.create({
-        model: "claude-3-5-sonnet-20241022", // Using Claude 3.5 Sonnet (latest)
-        max_tokens: 6000, // Increased for richer content
+        model: "claude-opus-4-20250514", // Using Claude Opus 4 for thinking agent
+        max_tokens: 20000, // Increased for richer content
         temperature: 0.7,
         system: "You are DomainStrategist v2 – an AI consultant who analyses domains and designs conversion-optimized startup ideas. Return only valid JSON; no commentary, no Markdown.",
         messages: [
@@ -69,18 +69,18 @@ THEME SCHEMA (MVP2.md enhanced):
   "name": "Theme Name",
   "colors": ["#hex1", "#hex2", "#hex3", "#hex4"],
   "fonts": "Font specification",
-  "tone": "Brand tone",
+  "tone": "Brand tone", 
   "layout": "Layout description",
-  "hero_visual": "Precise art direction for hero background image (for Unsplash API)",
+  "hero_visual": "Keywords for Unsplash background image",
   "social_proof": [
-    "\"Testimonial quote 1 with specific benefit.\" - Name T., Title",
-    "\"Testimonial quote 2 with measurable result.\" - Name S., Company"
+    "First testimonial quote with benefit - Name T., Title",
+    "Second testimonial quote with result - Name S., Company"
   ],
   "faq_entries": [
-    {"q": "Common question about the product?", "a": "Clear, detailed answer that builds trust."},
-    {"q": "Another frequent concern?", "a": "Reassuring response with specifics."}
+    {"q": "What is this product?", "a": "Clear answer about the product"},
+    {"q": "How does pricing work?", "a": "Simple pricing explanation"}
   ],
-  "primary_cta": "Exact call-to-action button text"
+  "primary_cta": "Call-to-action button text"
 }
 
 4. Output exactly:
@@ -90,11 +90,12 @@ THEME SCHEMA (MVP2.md enhanced):
 }
 
 5. Non-top domains: supply only domain + scores (omit ideas[]).
-6. JSON only, no stray text. Valid hex colors. Exactly 3 ideas and 3 themes per idea.
-7. CRITICAL: hero_visual must be descriptive for Unsplash (e.g., "Wide desert landscape with modern technology overlay", "Professional office space with collaborative team").
-8. CRITICAL: social_proof testimonials must include specific, believable benefits and realistic names/titles.
-9. CRITICAL: FAQ entries must address real user concerns for the industry.
-10. CRITICAL: primary_cta must be action-oriented and conversion-focused.
+6. CRITICAL: Output ONLY valid JSON - no markdown, no comments, no extra text.
+7. CRITICAL: Use simple quotes in strings, avoid special characters that break JSON parsing.
+8. CRITICAL: hero_visual must be descriptive for Unsplash (e.g., "Wide desert landscape with modern technology overlay", "Professional office space with collaborative team").
+9. CRITICAL: social_proof testimonials must include specific, believable benefits and realistic names/titles.
+10. CRITICAL: FAQ entries must address real user concerns for the industry.
+11. CRITICAL: primary_cta must be action-oriented and conversion-focused.
 ############################`;
   }
 } 
