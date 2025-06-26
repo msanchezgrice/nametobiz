@@ -52,7 +52,7 @@ export class BuilderAgent {
     try {
       const response = await this.client.messages.create({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 20000, // Increased to 20k as requested
+        max_tokens: 15000, // Reduced from 20k to reduce truncation risk
         temperature: 0.7,
         messages: [
           {
