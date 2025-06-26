@@ -69,3 +69,4 @@ temp/
 # Miscellaneous
 *.tgz
 *.tar.gz 
+.vercel
