@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "buildCommand": "cd apps/web && npm run build",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "pnpm install",
+  "framework": "nextjs",
+  "functions": {
+    "apps/web/pages/api/**/*.js": {
+      "maxDuration": 30
+    }
+  }
+}
