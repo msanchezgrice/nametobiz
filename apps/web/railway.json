@@ -8,10 +8,5 @@
     "healthcheckTimeout": 300,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
-  },
-  "env": {
-    "NPM_CONFIG_PACKAGE_MANAGER": "npm",
-    "NIXPACKS_NODEJS_VERSION": "20",
-    "NIXPACKS_NO_PNPM": "true"
   }
 }
