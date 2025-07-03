@@ -1,0 +1,42 @@
+# Exclude pnpm files completely
+pnpm-lock.yaml
+pnpm-lock.yaml.temp
+pnpm-workspace.yaml
+.pnpm-store/
+.pnpm-debug.log*
+
+# Exclude other package managers
+yarn.lock
+.yarn/
+
+# Exclude development and cache files
+node_modules/
+.next/
+.turbo/
+dist/
+build/
+
+# Exclude git and IDE files
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# Exclude environment files
+.env*
+!.env.example
+
+# Exclude docs and markdown (except README)
+docs/
+*.md
+!README.md
+
+# Exclude test files
+**/*.test.*
+**/*.spec.*
+
+# Exclude other apps and packages we don't need
+apps/worker/
+packages/
+infra/
+supabase/ 
