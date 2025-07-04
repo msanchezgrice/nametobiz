@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "turbo run build",
+    "build:packages": "cd packages/utils && pnpm build && cd ../db && pnpm build && cd ../llm && pnpm build && cd ../..",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
