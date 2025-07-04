@@ -1,7 +1,7 @@
 {
   "build": {
     "builder": "DOCKERFILE",
-    "dockerfilePath": "deploy-web/Dockerfile",
+    "dockerfilePath": "apps/web/Dockerfile",
     "rootDirectory": "."
   },
   "deploy": {

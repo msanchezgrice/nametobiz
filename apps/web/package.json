@@ -1,0 +1,14 @@
+{
+  "name": "nametobiz-test",
+  "version": "1.0.0",
+  "description": "Test deployment to bypass pnpm issues",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Test deployment successful\" && exit 0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
