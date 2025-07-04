@@ -1,10 +1,8 @@
 {
-  "buildCommand": "cd apps/web && npm run build",
-  "outputDirectory": "apps/web/.next",
+  "rootDirectory": "apps/web",
   "framework": "nextjs",
-  "installCommand": "cd apps/web && npm install",
   "functions": {
-    "apps/web/src/app/api/**/*.ts": {
+    "src/app/api/**/*.ts": {
       "runtime": "nodejs18.x"
     }
   }
