@@ -1,8 +1,0 @@
-[providers.nodejs]
-packageManager = "npm"
-
-[phases.build]
-cmds = ["npm install", "npm run build"]
-
-[phases.setup]
-nixPkgs = ["nodejs_20", "npm"] 
