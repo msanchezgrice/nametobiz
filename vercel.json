@@ -1,9 +1,8 @@
 {
-  "buildCommand": "cd apps/web && pnpm build",
+  "buildCommand": "pnpm build --filter @nametobiz/web",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs",
   "installCommand": "pnpm install",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD apps/web",
   "functions": {
     "apps/web/src/app/api/**/*.ts": {
       "runtime": "nodejs18.x"

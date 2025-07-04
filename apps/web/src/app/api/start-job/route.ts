@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       userError: userError ? {
         message: userError.message,
         status: userError.status,
-        code: (userError as any).code
+        code: 'code' in userError ? userError.code : undefined
       } : null
     });
 
