@@ -2,12 +2,20 @@
   "build": {
     "builder": "DOCKERFILE",
     "dockerfilePath": "apps/web/Dockerfile",
-    "rootDirectory": "."
+    "rootDirectory": ".",
+    "watchPatterns": ["apps/web/**"]
   },
   "deploy": {
     "healthcheckPath": "/",
     "healthcheckTimeout": 300,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
+  },
+  "environments": {
+    "production": {
+      "build": {
+        "builder": "DOCKERFILE"
+      }
+    }
   }
 }
