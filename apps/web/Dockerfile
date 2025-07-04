@@ -1,20 +1,20 @@
-# Use Node.js 20 Alpine - minimal test deployment
+# BYPASS ALL PACKAGE MANAGEMENT - Pure Node.js deployment
 FROM node:20-alpine
 
-# Set working directory
+# Create app directory
 WORKDIR /app
 
-# Copy package.json
-COPY package.json ./
-
-# Install dependencies (minimal, should be none)
-RUN npm install
-
-# Copy server
+# Copy ONLY the server file - no package.json to trigger detection
 COPY server.js ./
+
+# Create a minimal startup script
+RUN echo '#!/bin/sh' > start.sh && \
+    echo 'echo "🚀 Starting NametoBiz test server..."' >> start.sh && \
+    echo 'node server.js' >> start.sh && \
+    chmod +x start.sh
 
 # Expose port
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"] 
+# Run the server directly
+CMD ["./start.sh"] 
