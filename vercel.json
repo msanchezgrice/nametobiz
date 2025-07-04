@@ -7,5 +7,6 @@
     "apps/web/src/app/api/**/*.ts": {
       "runtime": "nodejs18.x"
     }
-  }
+  },
+  "nodeVersion": "18.x"
 } 

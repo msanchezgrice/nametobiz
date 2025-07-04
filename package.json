@@ -1,7 +1,7 @@
 {
   "name": "nametobiz",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@8.15.6",
   "description": "AI-Driven Domain-to-Prototype Platform",
   "main": "index.js",
   "scripts": {
