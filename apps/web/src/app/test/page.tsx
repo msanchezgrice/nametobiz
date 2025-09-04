@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function TestPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -18,12 +20,12 @@ export default function TestPage() {
           </ul>
         </div>
         <div className="mt-8">
-          <a 
+          <Link 
             href="/"
             className="text-blue-600 hover:text-blue-800 underline"
           >
             Go to Main App →
-          </a>
+          </Link>
         </div>
       </div>
     </div>
