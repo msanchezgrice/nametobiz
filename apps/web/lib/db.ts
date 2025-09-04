@@ -11,7 +11,7 @@ export interface Job {
 
 export interface Analysis {
   job_id: string;
-  spec: any;
+  spec: Record<string, unknown>;
   created_at: string;
 }
 
@@ -63,7 +63,7 @@ export class SupabaseClient {
     }
   }
 
-  async saveAnalysis(jobId: string, analysis: any): Promise<void> {
+  async saveAnalysis(jobId: string, analysis: Record<string, unknown>): Promise<void> {
     const { error } = await this.client
       .from('analysis')
       .insert({
@@ -76,7 +76,7 @@ export class SupabaseClient {
     }
   }
 
-  async getAnalysis(jobId: string): Promise<any | null> {
+  async getAnalysis(jobId: string): Promise<Record<string, unknown> | null> {
     const { data, error } = await this.client
       .from('analysis')
       .select('spec')
