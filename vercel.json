@@ -1,6 +1,0 @@
-{
-  "installCommand": "echo 'Skipping install'",
-  "buildCommand": "cd apps/web && npm install && npm run build",
-  "outputDirectory": "apps/web/.next",
-  "framework": null
-}
