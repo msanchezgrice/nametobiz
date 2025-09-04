@@ -2,7 +2,6 @@
   "installCommand": "npm install",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "rootDirectory": "apps/web",
   "framework": null,
   "functions": {
     "src/app/api/**/*.ts": {
