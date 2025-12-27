@@ -50,19 +50,19 @@ export default function EmailGate({ onAuthenticated }: EmailGateProps) {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <div className="p-6 bg-white/90 rounded-3xl border border-slate-200 shadow-lg">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">
-          Get Started
+        <h2 className="text-2xl font-semibold text-slate-900 mb-2">
+          Get started
         </h2>
-        <p className="text-gray-600">
-          Enter your email to continue with domain analysis
+        <p className="text-slate-600">
+          Enter your email to continue with domain analysis.
         </p>
       </div>
 
       <form onSubmit={handleSignIn} className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
             Email address
           </label>
           <input
@@ -71,38 +71,39 @@ export default function EmailGate({ onAuthenticated }: EmailGateProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full p-3 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent bg-slate-50/80"
             disabled={isLoading}
             required
           />
         </div>
 
         {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-red-600 text-sm">{error}</p>
+          <div className="p-3 bg-rose-50 border border-rose-200 rounded-2xl">
+            <p className="text-rose-600 text-sm">{error}</p>
           </div>
         )}
 
         {message && (
-          <div className="p-3 bg-green-50 border border-green-200 rounded-md">
-            <p className="text-green-600 text-sm">{message}</p>
+          <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl">
+            <p className="text-emerald-600 text-sm">{message}</p>
           </div>
         )}
 
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+          data-ph-event="signup_click"
+          className="w-full bg-slate-900 text-white py-3 px-6 rounded-full hover:bg-slate-800 focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 disabled:bg-slate-400 disabled:cursor-not-allowed transition-colors"
         >
           {isLoading ? 'Sending...' : 'Send Magic Link'}
         </button>
       </form>
 
       <div className="mt-6 text-center">
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-slate-500">
           We&apos;ll send you a secure login link via email. No passwords required.
         </p>
       </div>
     </div>
   );
-} 
+}

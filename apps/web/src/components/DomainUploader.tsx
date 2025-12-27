@@ -55,16 +55,16 @@ export default function DomainUploader({ onDomainsSubmit }: DomainUploaderProps)
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">
-        Enter Your Domains
+    <div className="p-6 bg-white/90 rounded-3xl border border-slate-200 shadow-lg">
+      <h2 className="text-2xl font-semibold mb-2 text-slate-900">
+        Enter your domains
       </h2>
-      <p className="text-gray-600 mb-6">
-        Enter up to 10 domain names, one per line. We&apos;ll analyze them and create prototypes for the top 3.
+      <p className="text-slate-600 mb-6">
+        Add up to 10 domains, one per line. We&apos;ll analyze them and build prototypes for the top 3.
       </p>
       
       <div className="mb-4">
-        <label htmlFor="domains" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="domains" className="block text-sm font-medium text-slate-700 mb-2">
           Domains (one per line)
         </label>
         <textarea
@@ -72,30 +72,30 @@ export default function DomainUploader({ onDomainsSubmit }: DomainUploaderProps)
           value={domainsText}
           onChange={(e) => setDomainsText(e.target.value)}
           placeholder={`thinkingobjects.ai\nstartclosein.com\ninteractiveobjects.ai`}
-          className="w-full h-48 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="w-full h-44 p-3 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent resize-none bg-slate-50/80"
           disabled={isSubmitting}
         />
       </div>
 
       {/* Future OCR upload field */}
       <div className="mb-6">
-        <label htmlFor="screenshot" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="screenshot" className="block text-sm font-medium text-slate-700 mb-2">
           Screenshot (optional - for future OCR)
         </label>
         <input
           type="file"
           id="screenshot"
           accept="image/*"
-          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100"
+          className="w-full p-2 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-amber-400 focus:border-transparent disabled:bg-slate-100"
           disabled={true}
         />
-        <p className="text-xs text-gray-500 mt-1">OCR functionality coming soon</p>
+        <p className="text-xs text-slate-500 mt-1">OCR functionality coming soon</p>
       </div>
 
       {errors.length > 0 && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+        <div className="mb-4 p-3 bg-rose-50 border border-rose-200 rounded-2xl">
           {errors.map((error, index) => (
-            <p key={index} className="text-red-600 text-sm">{error}</p>
+            <p key={index} className="text-rose-600 text-sm">{error}</p>
           ))}
         </div>
       )}
@@ -103,10 +103,11 @@ export default function DomainUploader({ onDomainsSubmit }: DomainUploaderProps)
       <button
         onClick={handleSubmit}
         disabled={isSubmitting}
-        className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        data-ph-event="analyze_domains"
+        className="w-full bg-slate-900 text-white py-3 px-6 rounded-full hover:bg-slate-800 focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 disabled:bg-slate-400 disabled:cursor-not-allowed transition-colors"
       >
         {isSubmitting ? 'Processing...' : 'Analyze Domains'}
       </button>
     </div>
   );
-} 
+}
